@@ -11,16 +11,29 @@ function show_snack(message){
 }
 
 function validateUser(email, password){
-    // TODO
-    return true
+    // E-mail de estudante e senha corretos
+    const validEmail = "123@unesc.net"; // Substitua com seu email correto
+    const validPassword = "unesc123";
+
+    // Valida se o email e senha são corretos
+    if (email === validEmail && password === validPassword) {
+        return true;
+    } else {
+        // Chama o snackbar para exibir a mensagem de erro
+        show_snack("Usuário ou senha inválidos.");
+        return false;
+    }
 }
 
-form.addEventListener(function(event){
-    event.preventDefault()
-    let email = document.querySelector("#email")
-    let password = document.querySelector("#password")
+form.addEventListener("submit", function(event){
+    event.preventDefault();
 
-    if(!validateUser(email, password)) return false
+    let email = document.querySelector("#email").value;
+    let password = document.querySelector("#password").value;
 
-    form.submit()
-})
+    // Valida o usuário
+    if (!validateUser(email, password)) return;
+
+    // Submete o formulário se a validação for bem-sucedida
+    form.submit();
+});
